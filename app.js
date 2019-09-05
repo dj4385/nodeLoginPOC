@@ -5,10 +5,11 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       mongoose = require('mongoose')
 
-// app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json()) // with this you can send the data to api in json format
-    
-app.get('/',(req,res)=>{
+
+
+app.get('/',(req,res,next)=>{
     res.send({
         "message":"API started"
     })
@@ -17,7 +18,8 @@ app.get('/',(req,res)=>{
 app.use('/api/',route)
 
 mongoose.Promise = global.Promise
-mongoose.connect(config.dbPath,{useNewUrlParser: true})
+mongoose.connect(config.dbPath,{useCreateIndex: true,
+    useNewUrlParser: true})
     .then(()=>{
         console.log("Db is connected")
     }).catch(err=>{
