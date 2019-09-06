@@ -5,11 +5,11 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       mongoose = require('mongoose')
 
-app.use(bodyParser.urlencoded({extended:false}))
+// app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json()) // with this you can send the data to api in json format
 
 
-app.get('/',(req,res,next)=>{
+app.get('/',(req,res)=>{
     res.send({
         "message":"API started"
     })

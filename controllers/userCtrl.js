@@ -1,12 +1,13 @@
 const userModel = require('../models/userModel')
 
 module.exports = {
-    "registerUser": (req,res,next)=>{
+    register : (req,res)=>{
         if(!req.body){
             res.status(400).send({
                 "message": "User Detail Cannot be empty"
             })
         } else{
+            console.log(req.body)
             const user = new userModel({
                 name : req.body.name,
                 email : req.body.email,
@@ -21,7 +22,7 @@ module.exports = {
             })
         }
     },
-    "login":(req,res,next)=>{
+    login :(req,res)=>{
         res.send({
             "message":"This is an register method"
         })
