@@ -25,33 +25,31 @@ module.exports = {
             })
         }
     },
-    login :(req,res)=>{
+    login : async (req,res)=>{
         if(!req.body){
             res.send({
                 "message":"Invalid email id and password"
             })
         } else {
-            userModel.findOne({
-                email: req.body.email
-            }),(err, user)=>{
-                if(err){
-                    throw err
-                } else if(!user){
+            var user = await userModel.findOne({
+                email : req.body.email
+            })
+            if(!user){
+                res.send({
+                    "message":"User not found"
+                })
+            } else if(user){
+                var matchPassword = await bcrypt.compare(req.body.password, user.password)
+                if(!matchPassword){
                     res.send({
-                        "message": "Authentication fail user is not found"
+                        "message": "Invalid Password"
                     })
-                } else if(user){
-                    if(!bcrypt.compareSync(user.password, req.body.password)){
-                        res.send({
-                            "message":"Incorrect Password"
-                        })
-                    } else {
-                        res.send({
-                            "message":"Login success",
-                            "name": user.name,
-                            "email":user.email
-                        })
-                    }
+                } else {
+                    res.send({
+                        "message": "login success",
+                        "name" : user.name,
+                        "email" : user.email
+                    })
                 }
             }
         }
