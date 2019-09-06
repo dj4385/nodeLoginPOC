@@ -1,4 +1,5 @@
-const userModel = require('../models/userModel')
+const userModel = require('../models/userModel'),
+      utils = require('../utils/utilFile')
 
 module.exports = {
     register : (req,res)=>{
@@ -7,11 +8,11 @@ module.exports = {
                 "message": "User Detail Cannot be empty"
             })
         } else{
-            console.log(req.body)
+            var hashPassword = utils.encryptPassword(req.body.password)
             const user = new userModel({
                 name : req.body.name,
                 email : req.body.email,
-                password : req.body.password
+                password : hashPassword
             })
             user.save().then(data=>{
                 res.status(200).json(data)
