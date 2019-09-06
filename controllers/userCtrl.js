@@ -1,6 +1,7 @@
 const userModel = require('../models/userModel'),
       utils = require('../utils/utilFile'),
-      bcrypt = require('bcrypt')
+      bcrypt = require('bcrypt'),
+      jwt = require('jsonwebtoken')
 
 
 module.exports = {
@@ -45,7 +46,11 @@ module.exports = {
                         "message": "Invalid Password"
                     })
                 } else {
+                    var token = jwt.sign({
+                        _id: user._id
+                    },'loginAPIPOC')
                     res.send({
+                        "token": token,
                         "message": "login success",
                         "name" : user.name,
                         "email" : user.email
