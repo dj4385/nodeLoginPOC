@@ -1,5 +1,7 @@
 const userModel = require('../models/userModel'),
-      utils = require('../utils/utilFile')
+      utils = require('../utils/utilFile'),
+      bcrypt = require('bcrypt')
+
 
 module.exports = {
     register : (req,res)=>{
@@ -24,8 +26,34 @@ module.exports = {
         }
     },
     login :(req,res)=>{
-        res.send({
-            "message":"This is an register method"
-        })
+        if(!req.body){
+            res.send({
+                "message":"Invalid email id and password"
+            })
+        } else {
+            userModel.findOne({
+                email: req.body.email
+            }),(err, user)=>{
+                if(err){
+                    throw err
+                } else if(!user){
+                    res.send({
+                        "message": "Authentication fail user is not found"
+                    })
+                } else if(user){
+                    if(!bcrypt.compareSync(user.password, req.body.password)){
+                        res.send({
+                            "message":"Incorrect Password"
+                        })
+                    } else {
+                        res.send({
+                            "message":"Login success",
+                            "name": user.name,
+                            "email":user.email
+                        })
+                    }
+                }
+            }
+        }
     }
 }
