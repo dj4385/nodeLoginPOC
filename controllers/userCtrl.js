@@ -5,6 +5,12 @@ const userModel = require('../models/userModel'),
 
 
 module.exports = {
+
+    clients : async (req,res)=>{
+        var clients = await userModel.find()
+        console.log(clients)
+        res.send(clients)
+    },
     register : (req,res)=>{
         if(!req.body){
             res.status(400).send({
