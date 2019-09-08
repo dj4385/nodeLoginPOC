@@ -6,11 +6,11 @@ const userModel = require('../models/userModel'),
 
 module.exports = {
 
-    clients : async (req,res)=>{
-        var clients = await userModel.find()
-        console.log(clients)
-        res.send(clients)
-    },
+    // clients : async (req,res)=>{
+    //     var clients = await userModel.find()
+    //     console.log(clients)
+    //     res.send(clients)
+    // },
     register : (req,res)=>{
         if(!req.body){
             res.status(400).send({
@@ -24,7 +24,13 @@ module.exports = {
                 password : hashPassword
             })
             user.save().then(data=>{
-                res.status(200).json(data)
+                var response = utils.sendMail(data.email)
+                console.log(response)
+                res.status(200).json({
+                    "user" : data,
+                    "message": response
+                })
+                
             }).catch(err=>{
                 res.status(500).send({
                     "message": err.message || "Something went wrong"
