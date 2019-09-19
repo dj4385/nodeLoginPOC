@@ -39,9 +39,47 @@ module.exports = {
         }
     },
     updateProduct: (req, res)=>{
-
+        if(!req.body){
+            res.status(400).send({
+                "message": "Invalid product Id"
+            })
+        } else {
+            productModel.findByIdAndUpdate(req.params.id,{
+                productName : req.body.productName,
+                productQty : req.body.productQty,
+                price : req.body.price
+            }).then(product=>{
+                res.status(200).send({
+                    "message":"Product Detail Updated",
+                    "data": product
+                })
+            }).catch(ex=>{
+                res.status(500).send({
+                    "message":"Invalid Product ID"
+                })
+            })
+        }
     },
     deleteProduct: (req, res)=>{
-
+        if(!req.params.id){
+            res.status(404).send({
+                "message":"Product does not exist"
+            })
+        }else {
+            productModel.findByIdAndRemove(req.params.id)
+                .then(product=>{
+                    if(!product){
+                        res.status(404).send({
+                            "message":"Product not found"
+                        })
+                    } else {
+                        res.status(200).send(product)
+                    }
+                }).catch(err=>{
+                    res.status(500).send({
+                        "message":"Something went wrong"
+                    })
+                })
+        }
     }
 }
