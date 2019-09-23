@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 const productSchema = mongoose.Schema({
     productName:{
         type: "string",
-        min: 3,
+        minlength: 3,
         require: true
     },
     productQty:{
         type: Number,
-        min: 0,
+        minlength: 1,
         require: true,
     },
     price:{
