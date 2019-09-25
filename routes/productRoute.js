@@ -1,10 +1,11 @@
 const express = require('express'),
       productRouter = express.Router(),
-      productCtrl = require('../controllers/productCtrl')
+      productCtrl = require('../controllers/productCtrl'),
+      checkAuth = require('../middleware/checkUserLogin')
 
-productRouter.get('/products',productCtrl.viewProducts)
-productRouter.post('/addProduct',productCtrl.addProduct)
-productRouter.put('/products/:id',productCtrl.updateProduct)
-productRouter.delete('/products/:id',productCtrl.deleteProduct)
+productRouter.get('/products', checkAuth, productCtrl.viewProducts)
+productRouter.post('/addProduct', checkAuth, productCtrl.addProduct)
+productRouter.put('/products/:id', checkAuth, productCtrl.updateProduct)
+productRouter.delete('/products/:id',checkAuth, productCtrl.deleteProduct)
 
 module.exports = productRouter
