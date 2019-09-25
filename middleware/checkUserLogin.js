@@ -1,12 +1,21 @@
 const jwt = require('jsonwebtoken')
 module.exports = (req,res,next)=>{
     console.log(req.headers.token)
-    try{
-        const decode = jwt.verify(req.headers.x-token,"loginAPIPOC")
-        next()
-    }catch(err){
+    const token = req.headers.token
+    if(!token){
         res.status(401).send({
-            "message":"Authentication fail"
+            "message": "Access denied. No token provided"
         })
+    } else {
+        try{
+            const decode = jwt.verify(req.headers.x-token,"loginAPIPOC")
+            req.userCtrl =  decode
+            next()
+        }catch(err){
+            res.status(401).send({
+                "message":err
+            })
+        }    
     }
+    
 }
