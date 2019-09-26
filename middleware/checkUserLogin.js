@@ -8,7 +8,7 @@ module.exports = (req,res,next)=>{
         })
     } else {
         try{
-            const decode = jwt.verify(req.headers.x-token,"loginAPIPOC")
+            const decode = jwt.verify(req.headers.token,"loginAPIPOC")
             req.userCtrl =  decode
             next()
         }catch(err){
