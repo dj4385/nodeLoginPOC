@@ -61,8 +61,9 @@ module.exports = {
                     var token = jwt.sign({
                         _id: user._id
                     },'loginAPIPOC')
-                    res.setHeader("token",token)
+                    // res.setHeader("token",token)
                     res.send({
+                        "token":token,
                         "message": "login success",
                         "name" : user.name,
                         "email" : user.email
