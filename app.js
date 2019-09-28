@@ -6,6 +6,10 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       mongoose = require('mongoose')
 
+
+
+      require('./startup/prod')(app)
+
 // app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json()) // with this you can send the data to api in json format
 app.use((req,res,next)=>{
