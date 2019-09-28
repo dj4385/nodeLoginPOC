@@ -20,3 +20,7 @@ Step 2: Then add the engine object in the package.json
             "engines":{
                 "node": "version of node you are using"
             }
+
+Start deployment of the application
+Step 1: heroku create then use command to use code on heroku:
+        git push heroku master
