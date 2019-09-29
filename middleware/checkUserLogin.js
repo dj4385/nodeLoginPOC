@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 module.exports = (req,res,next)=>{
-    console.log(req.headers.token)
     const token = req.headers.token
     if(!token){
         res.status(401).send({

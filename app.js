@@ -4,7 +4,8 @@ const express = require('express'),
       route = require('./routes/userRoute'),
       productRoute = require('./routes/productRoute')
       bodyParser = require('body-parser'),
-      mongoose = require('mongoose')
+      mongoose = require('mongoose'),
+      cors = require('cors')
 
 
 
@@ -12,12 +13,7 @@ const express = require('express'),
 
 // app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json()) // with this you can send the data to api in json format
-app.use((req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-})
+app.use(cors())
 
 app.get('/',(req,res)=>{
     res.send({
