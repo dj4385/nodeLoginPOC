@@ -25,10 +25,8 @@ module.exports = {
             })
             user.save().then(data=>{
                 var response = utils.sendMail(data.email)
-                console.log(response)
                 res.status(200).json({
-                    "user" : data,
-                    "message": response
+                    "user" : data
                 })
                 
             }).catch(err=>{
