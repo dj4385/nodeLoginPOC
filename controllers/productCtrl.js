@@ -17,6 +17,32 @@ module.exports = {
 
         }
     },
+    getSingleProduct: async (req,res)=>{
+        
+        if(!req.params.id){
+            res.status(400).send({
+                "message":"Invalid product id"
+            })
+        } else {
+            if(req.params.id.length === 24){
+                const product = await productModel.findById({_id: req.params.id})
+                if(!product){
+                    res.send(400).send({
+                        "message": "Product does not exist"
+                    })
+                } else {
+                    res.status(200).send({
+                        "message": "Product Found",
+                        "product": product
+                    })
+                }
+            } else {
+                res.status(400).send({
+                    "message": "Invalid product id"
+                })
+            }
+        }
+    },
     addProduct: (req, res)=>{
         if(!req.body){
             res.status(400).send({
