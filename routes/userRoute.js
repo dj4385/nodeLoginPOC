@@ -5,5 +5,6 @@ const express = require('express'),
 // route.get('/users', userCtrll.clients)
 route.post('/register',userCtrll.register)
 route.post('/login',userCtrll.login)
+route.post('/forgetPassword', userCtrll.forgetPassword)
 
 module.exports = route

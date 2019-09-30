@@ -69,5 +69,24 @@ module.exports = {
                 }
             }
         }
+    },
+    forgetPassword : async (req, res)=>{
+        if(!req.body){
+            res.status(401).send({
+                "message": "Invalid email address"
+            })
+        } else {
+            const user = await userModel.findOne({ email: req.body.email })
+            if(!user){
+                res.send({
+                    "message": "User not found"
+                })
+            } else {
+                res.status(200).send({
+                    "message": "user exist",
+                    "data" : user
+                })
+            }
+        }
     }
 }
