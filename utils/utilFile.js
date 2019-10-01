@@ -28,5 +28,31 @@ module.exports = {
                 console.log(info)
             }
         })
+    },
+    changePassword: (name,email)=>{
+        var transport = mail.createTransport({
+            service: 'outlook',
+            auth: {
+                user: 'dheeraj2406@outlook.com',
+                pass: 'VAmp24!@'
+            }
+        })
+
+        var mailOption = {
+            from : 'dheeraj2406@outlook.com',
+            to : email,
+            subject : 'Change Password',
+            text : `Hello ${name},
+            Please click on the link to change the password
+            <a href="">Change Password</a>`
+        }
+
+        transport.sendMail(mailOption, (err,info)=>{
+            if(err){
+                return err
+            } else {
+                return infor
+            }
+        })
     }
 }

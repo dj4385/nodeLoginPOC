@@ -82,6 +82,8 @@ module.exports = {
                     "message": "User not found"
                 })
             } else {
+                var mailSended = utils.changePassword(user.name, user.email)
+                console.log("Mail sedn",mailSended)
                 res.status(200).send({
                     "message": "user exist",
                     "data" : user
