@@ -82,13 +82,16 @@ module.exports = {
                     "message": "User not found"
                 })
             } else {
-                var mailSended = utils.changePassword(user.name, user.email)
+                var link = "http://localhost:4000/api/changePassword.html"
+                var mailSended = utils.changePassword(user.name, user.email, link)
                 console.log("Mail sedn",mailSended)
                 res.status(200).send({
-                    "message": "user exist",
-                    "data" : user
+                    "message": "Please reset your password by clicking on the link which is mailed to you"
                 })
             }
         }
+    },
+    changePassword: (req,res)=>{
+        console.log(req.body)
     }
 }
