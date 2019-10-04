@@ -34,5 +34,5 @@ mongoose.connect(config.dbPath,{useCreateIndex: true,
     })
 
 app.listen(config.serverPort,()=>{
-    console.log('server started')
+    console.log('server started',config.serverPort)
 })
