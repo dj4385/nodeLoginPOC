@@ -71,6 +71,7 @@ module.exports = {
         }
     },
     forgetPassword : async (req, res)=>{
+        console.log(req.body)
         if(!req.body){
             res.status(401).send({
                 "status": 401,
@@ -79,8 +80,8 @@ module.exports = {
         } else {
             const user = await userModel.findOne({ email: req.body.email })
             if(!user){
-                res.status(400).send({
-                    "status": 400,
+                res.send({
+                    "status": 404,
                     "message": "User not found"
                 })
             } else {
