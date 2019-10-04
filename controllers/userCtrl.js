@@ -73,12 +73,14 @@ module.exports = {
     forgetPassword : async (req, res)=>{
         if(!req.body){
             res.status(401).send({
+                "status": 401,
                 "message": "Invalid email address"
             })
         } else {
             const user = await userModel.findOne({ email: req.body.email })
             if(!user){
-                res.send({
+                res.status(400).send({
+                    "status": 400,
                     "message": "User not found"
                 })
             } else {
@@ -86,6 +88,7 @@ module.exports = {
                 var mailSended = utils.changePassword(user.name, user.email, link)
                 console.log("Mail sedn",mailSended)
                 res.status(200).send({
+                    "status": 200,
                     "message": "Please reset your password by clicking on the link which is mailed to you"
                 })
             }
