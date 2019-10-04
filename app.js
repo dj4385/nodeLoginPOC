@@ -24,6 +24,7 @@ app.get('/',(req,res)=>{
 app.use('/api/',route)
 app.use('/api/product/',productRoute)
 
+
 mongoose.Promise = global.Promise
 mongoose.connect(config.dbPath,{useCreateIndex: true,
     useNewUrlParser: true})

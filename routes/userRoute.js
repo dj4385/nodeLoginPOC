@@ -2,7 +2,8 @@ const express = require('express'),
       route = express.Router(),
       userCtrll = require('../controllers/userCtrl'),
       path = require('path'),
-      changePasswordFilePath = path.join(path.normalize(__dirname+'/..'),'/template/changePassword.html')
+      changePasswordFilePath = path.join(path.normalize(__dirname+'/..'),'/public/changePassword.html')
+    //   changePasswordFilePath = path.join(path.normalize(__dirname+'/..'),'/template/changePassword.html')
 
 console.log(changePasswordFilePath)
 // route.get('/users', userCtrll.clients)
