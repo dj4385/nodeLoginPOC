@@ -51,8 +51,10 @@ module.exports = {
         } else {
             const product = new productModel({
                 productName : req.body.productName,
+                category: req.body.category,
                 productQty : req.body.productQty,
-                price : req.body.price
+                price : req.body.price,
+                totalPrice: req.body.totalPrice
             })
             product.save().then(data=>{
                 res.send({

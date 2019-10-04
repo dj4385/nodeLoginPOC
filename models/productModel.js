@@ -6,6 +6,10 @@ const productSchema = mongoose.Schema({
         minlength: 3,
         require: true
     },
+    category:{
+        type: "string",
+        require: true
+    },
     productQty:{
         type: Number,
         minlength: 1,
