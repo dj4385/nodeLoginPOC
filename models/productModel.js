@@ -19,6 +19,10 @@ const productSchema = mongoose.Schema({
         type: Number,
         require: true
     },
+    isAddedToCart: {
+        type: Boolean,
+        default : false
+    },
     creationTime:{
         type: Date,
         default: Date.now
