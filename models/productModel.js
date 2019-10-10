@@ -19,6 +19,10 @@ const productSchema = mongoose.Schema({
         type: Number,
         require: true
     },
+    productImg: {
+        type: String,
+        require: true
+    },
     isAddedToCart: {
         type: Boolean,
         default : false

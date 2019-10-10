@@ -54,7 +54,8 @@ module.exports = {
                 category: req.body.category,
                 productQty : req.body.productQty,
                 price : req.body.price,
-                totalPrice: req.body.totalPrice
+                totalPrice: req.body.totalPrice,
+                productImg: req.body.productImg
             })
             product.save().then(data=>{
                 res.send({
