@@ -1,6 +1,6 @@
 const express = require('express'),
       productRouter = express.Router(),
-      productCtrl = require('../controllers/productCtrl'),
+      productCtrl = require('../helpers/productCtrl'),
       checkAuth = require('../middleware/checkUserLogin')
 
 productRouter.get('/products', checkAuth, productCtrl.viewProducts)

@@ -1,6 +1,6 @@
 const express = require('express'),
       route = express.Router(),
-      userCtrll = require('../controllers/userCtrl'),
+      userCtrll = require('../helpers/userCtrl'),
       path = require('path'),
       changePasswordFilePath = path.join(path.normalize(__dirname+'/..'),'/public/changePassword.html')
     //   changePasswordFilePath = path.join(path.normalize(__dirname+'/..'),'/template/changePassword.html')
