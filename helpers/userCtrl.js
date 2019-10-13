@@ -96,6 +96,7 @@ module.exports = {
         }
     },
     changePassword: (req,res)=>{
+        console.log('Request ',req);
         res.send(req.body)
     }
 }
