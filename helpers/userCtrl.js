@@ -13,6 +13,7 @@ module.exports = {
     // },
     register : (req,res)=>{
         if(!req.body){
+            winston.debug(`Request body is empty ${req.body}`)
             res.status(400).send({
                 "message": "User Detail Cannot be empty"
             })
@@ -30,6 +31,7 @@ module.exports = {
                 })
                 
             }).catch(err=>{
+                winston.debug(`Error in register user ${err}`)
                 res.status(500).send({
                     "message": err.message || "Something went wrong"
                 })
@@ -38,6 +40,7 @@ module.exports = {
     },
     login : async (req,res)=>{
         if(!req.body){
+            winston.debug(`Request body is empty ${req.body}`)
             res.send({
                 "message":"Invalid email id and password"
             })
@@ -46,12 +49,14 @@ module.exports = {
                 email : req.body.email
             })
             if(!user){
+                winston.debug(`User not found ${req.body.email}`)
                 res.send({
                     "message":"User not found"
                 })
             } else if(user){
                 var matchPassword = await bcrypt.compare(req.body.password, user.password)
                 if(!matchPassword){
+                    winston.debug(`Invalid Password ${req.body.password}`)
                     res.send({
                         "message": "Invalid Password"
                     })
@@ -73,6 +78,7 @@ module.exports = {
     forgetPassword : async (req, res)=>{
         console.log(req.body)
         if(!req.body){
+            winston.debug(`Request body is empty ${req.body}`)
             res.status(401).send({
                 "status": 401,
                 "message": "Invalid email address"
@@ -80,6 +86,7 @@ module.exports = {
         } else {
             const user = await userModel.findOne({ email: req.body.email })
             if(!user){
+                winston.debug(`user not found ${req.body.email}`)
                 res.send({
                     "status": 404,
                     "message": "User not found"
@@ -87,6 +94,7 @@ module.exports = {
             } else {
                 var link = "http://localhost:4000/api/changePassword.html"
                 var mailSended = utils.changePassword(user.name, user.email, link)
+                winston.debug(`Email send of forget password ${mailSended}`)
                 console.log("Mail sedn",mailSended)
                 res.status(200).send({
                     "status": 200,

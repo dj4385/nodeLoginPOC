@@ -6,6 +6,7 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       mongoose = require('mongoose'),
       cors = require('cors'),
+      winston = require('./utils/logger'),
 
 
 
@@ -29,11 +30,14 @@ mongoose.Promise = global.Promise
 mongoose.connect(config.dbPath,{useCreateIndex: true,
     useNewUrlParser: true})
     .then(()=>{
+        winston.debug('Data base is connected')
         console.log("Db is connected")
     }).catch(err=>{
+        winston.debug(err)
         console.log(err)
     })
 
 app.listen(config.serverPort,()=>{
+    winston.debug('server started at port : ',config.serverPort)
     console.log('server started',config.serverPort)
 })

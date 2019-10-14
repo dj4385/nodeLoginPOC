@@ -5,6 +5,7 @@ module.exports = {
         try{
             const products = await productModel.find()
             if(!products){
+                winston.debug(`There is no products`)
                 res.status(500).send({
                     "message":"There are no products"
                 })
@@ -20,6 +21,7 @@ module.exports = {
     getSingleProduct: async (req,res)=>{
         
         if(!req.params.id){
+            winston.debug(`Invalid product ID ${req.params.id}`)
             res.status(400).send({
                 "message":"Invalid product id"
             })
@@ -27,6 +29,7 @@ module.exports = {
             if(req.params.id.length === 24){
                 const product = await productModel.findById({_id: req.params.id})
                 if(!product){
+                    winston.debug(`Product does not exist ${req.params.id}`)
                     res.send(400).send({
                         "message": "Product does not exist"
                     })
@@ -45,6 +48,7 @@ module.exports = {
     },
     addProduct: (req, res)=>{
         if(!req.body){
+            winston.debug(`Invalid products detail ${req.body}`)
             res.status(400).send({
                 "message":"Invalid products detail"
             })
@@ -63,12 +67,14 @@ module.exports = {
                     "productDetail":data
                 })
             }).catch(err=>{
+                winston.debug(`Error in adding product ${err}`)
                 res.status(500).send(err)
             })
         }
     },
     updateProduct: (req, res)=>{
         if(!req.body){
+            winston.debug(`Invalid products detail ${req.body}`)
             res.status(400).send({
                 "message": "Invalid product Id"
             })
@@ -83,6 +89,7 @@ module.exports = {
                     "data": product
                 })
             }).catch(ex=>{
+                winston.debug(`Invalid products id ${ex}`)
                 res.status(500).send({
                     "message":"Invalid Product ID"
                 })
@@ -91,6 +98,7 @@ module.exports = {
     },
     deleteProduct: (req, res)=>{
         if(!req.params.id){
+            winston.debug(`Invalid products id ${req.params.id}`)
             res.status(404).send({
                 "message":"Product does not exist"
             })
@@ -98,6 +106,7 @@ module.exports = {
             productModel.findByIdAndRemove(req.params.id)
                 .then(product=>{
                     if(!product){
+                        winston.debug(`Product Not found ${req.params.id}`)
                         res.status(404).send({
                             "message":"Product not found"
                         })
@@ -105,6 +114,7 @@ module.exports = {
                         res.status(200).send(product)
                     }
                 }).catch(err=>{
+                    winston.debug(`Error in deleting products ${err}`)
                     res.status(500).send({
                         "message":"Something went wrong"
                     })
