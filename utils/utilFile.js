@@ -43,9 +43,11 @@ module.exports = {
             from : 'dheeraj2406@outlook.com',
             to : email,
             subject : 'Change Password',
-            text : `Hello ${name},
-            Please click on the link to change the password
-            <a href='${link}'>Change Password</a>`
+            // text : `Hello ${name},
+            // Please click on the link to change the password
+            // <a href='${link}'>Change Password</a>`
+            text : 'Hello '+name+' click <a href="'+link+'">here</a>',
+            html : "<a href="+link+">Helo</a>"
         }
 
         transport.sendMail(mailOption, (err,info)=>{

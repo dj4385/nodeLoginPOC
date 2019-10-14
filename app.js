@@ -11,7 +11,7 @@ const express = require('express'),
 
       require('./startup/prod')(app)
 
-// app.use(bodyParser.urlencoded({extended:true, limit: '50mb'}))
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json({limit: '10mb', extended: true})) // with this you can send the data to api in json format
 app.use(cors())
 
