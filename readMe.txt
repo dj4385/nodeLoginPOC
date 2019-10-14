@@ -10,16 +10,16 @@ Step 4: Then install the heroku cli according to your system os. For linux use t
 
 Step 5: Then login to heroku using terminal by using this command : 
         heroku login --> then enter email id and password
-Step 6: Then set the proxy using this command:
-            export HTTP_PROXY=http://proxy.server.com/1234
+
 
 Then prepare application for deployment....
 
 Step 1: Set the npm start in package.json 
 Step 2: Then add the engine object in the package.json
             "engines":{
-                "node": "version of node you are using"
+                "node": "version of node you are using (only major version)"
             }
+Step 3: create a new file named : procfile and add the starting entry point of the application
 
 Start deployment of the application
 Step 1: heroku create then use command to use code on heroku:
