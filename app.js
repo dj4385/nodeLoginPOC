@@ -5,7 +5,7 @@ const express = require('express'),
       productRoute = require('./routes/productRoute')
       bodyParser = require('body-parser'),
       mongoose = require('mongoose'),
-      cors = require('cors')
+      cors = require('cors'),
 
 
 
