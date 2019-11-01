@@ -26,7 +26,14 @@ module.exports = {
             })
             user.save().then(data=>{
                 var response = utils.sendMail(data.email)
-                res.status(200).json({
+                response.then(data=>{
+                    console.log("Mail res",data)
+                }).catch(err=>{
+                    winston.debug(`Error in sending mail when user register ${err}`)
+                    console.log("Error",err)
+                })
+                res.status(201).json({
+                    "message":"Mail Sended Successfully",
                     "user" : data
                 })
                 

@@ -1,0 +1,19 @@
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"message":"Error in register user MongoError: E11000 duplicate key error collection: test.usersches index: email_1 dup key: { : \"dj4385@gmail.com\" }","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}

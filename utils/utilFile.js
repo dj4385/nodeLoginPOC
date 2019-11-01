@@ -6,8 +6,12 @@ module.exports = {
         return bcrypt.hashSync(password, 10)
     },
     sendMail : (email)=>{
+        var pr
         var transport = mail.createTransport({
             service: 'outlook',
+            tls:{
+                rejectUnauthorized: false
+            },
             auth: {
                 user: 'dheeraj2406@outlook.com',
                 pass: 'VAmp24!@'
@@ -20,14 +24,16 @@ module.exports = {
             subject : 'Welcome ',
             text : 'Welcome to our POC'
         }
+        pr = transport.sendMail(mailOption)
+        return pr
 
-        transport.sendMail(mailOption, (err,info)=>{
-            if(err){
-                console.log(err)
-            } else {
-                console.log(info)
-            }
-        })
+        // transport.sendMail(mailOption, (err,info)=>{
+        //     if(err){
+        //         console.log(err)
+        //     } else {
+        //         console.log(info)
+        //     }
+        // })
     },
     changePassword: (name,email,link)=>{
         console.log(link)
