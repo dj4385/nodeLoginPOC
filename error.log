@@ -17,3 +17,10 @@
 {"message":"Data base is connected","level":"debug","label":"Log"}
 {"level":"debug","message":"server started at port : ","label":"Log"}
 {"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"message":"Email send of forget password [object Promise]","level":"debug","label":"Log"}
+{"message":"Error while sending mail at the time of password change ReferenceError: data is not defined","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"message":"Data base is connected","level":"debug","label":"Log"}
+{"message":"Email send of forget password [object Promise]","level":"debug","label":"Log"}

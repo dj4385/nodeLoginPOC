@@ -39,6 +39,9 @@ module.exports = {
         console.log(link)
         var transport = mail.createTransport({
             service: 'outlook',
+            tls:{
+                rejectUnauthorized: false
+            },
             auth: {
                 user: 'dheeraj2406@outlook.com',
                 pass: 'VAmp24!@'
@@ -56,12 +59,7 @@ module.exports = {
             html : "<a href="+link+">Helo</a>"
         }
 
-        transport.sendMail(mailOption, (err,info)=>{
-            if(err){
-                return err
-            } else {
-                return info
-            }
-        })
+        var pr = transport.sendMail(mailOption)
+        return pr
     }
 }

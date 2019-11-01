@@ -101,11 +101,17 @@ module.exports = {
             } else {
                 var link = "http://localhost:4000/api/changePassword.html"
                 var mailSended = utils.changePassword(user.name, user.email, link)
+                mailSended.then(data=>{
+                    console.log("Forget Password Mail",data)
+                }).catch(err=>{
+                    winston.debug(`Error while sending mail at the time of password change ${err}`)
+                    console.log(err)
+                })
                 winston.debug(`Email send of forget password ${mailSended}`)
                 console.log("Mail sedn",mailSended)
                 res.status(200).send({
                     "status": 200,
-                    "message": "Please reset your password by clicking on the link which is mailed to you"
+                    "message": "Please reset your password by clicking on the link which is mailed to your registered email address"
                 })
             }
         }
