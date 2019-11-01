@@ -99,7 +99,7 @@ module.exports = {
                     "message": "User not found"
                 })
             } else {
-                var link = "http://localhost:4000/api/changePassword.html"
+                var link = `${process.env.PORT}/api/changePassword.html`
                 var mailSended = utils.changePassword(user.name, user.email, link)
                 mailSended.then(data=>{
                     console.log("Forget Password Mail",data)
