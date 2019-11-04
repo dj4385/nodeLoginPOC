@@ -111,5 +111,37 @@ module.exports = {
                 }
             }
         }
+    },
+    forgetPassword: async (req,res)=>{
+        if(!req.body){
+            winston.debug(`Request body is empty while forget password ${req.body}`)
+            res.send({
+                "message": "Empty Email Field"
+            })
+        } else {
+            var user = await userModel.findOne({"email": req.body.email})
+            if(!user){
+                winston.debug(`emial address is not found while forgetpassword ${user}`)
+                res.status(401).send({
+                    "message": "Invalid Email Address"
+                })
+            } else{
+                var decryptPass = user.password
+                var sendMail = utils.mailPassword(user.name,user.email,decryptPass)
+                sendMail.then(mailRes=>{
+                    res.send({
+                        "message": "Password is send to your registered mail id",
+                        "info": mailRes
+                    })
+                }).catch(err=>{
+                    winston.debug(`Error while sending mail ${err}`)
+                    res.send({
+                        "message": "Failed to send mail",
+                        "info":err
+                    })
+                })
+            }
+        }
     }
+
 }
