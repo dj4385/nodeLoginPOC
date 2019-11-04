@@ -82,42 +82,34 @@ module.exports = {
             }
         }
     },
-    forgetPassword : async (req, res)=>{
-        console.log(req.body)
+    changePassword : async (req, res)=>{
         if(!req.body){
             winston.debug(`Request body is empty ${req.body}`)
             res.status(401).send({
                 "status": 401,
-                "message": "Invalid email address"
+                "message": "Invalid Object"
             })
         } else {
-            const user = await userModel.findOne({ email: req.body.email })
-            if(!user){
-                winston.debug(`user not found ${req.body.email}`)
+            if(req.body.newPass !== req.body.reNewPass){
+                winston.debug(`Password is not matched, newPassword  ${req.body.newPass}, reNewPass: ${req.body.reNewPass}`)
                 res.send({
-                    "status": 404,
-                    "message": "User not found"
+                    "message":"Password is not matched"
                 })
             } else {
-                var link = `${process.env.PORT}/api/changePassword.html`
-                var mailSended = utils.changePassword(user.name, user.email, link)
-                mailSended.then(data=>{
-                    console.log("Forget Password Mail",data)
-                }).catch(err=>{
-                    winston.debug(`Error while sending mail at the time of password change ${err}`)
-                    console.log(err)
-                })
-                winston.debug(`Email send of forget password ${mailSended}`)
-                console.log("Mail sedn",mailSended)
-                res.status(200).send({
-                    "status": 200,
-                    "message": "Please reset your password by clicking on the link which is mailed to your registered email address"
-                })
+                var ePassowrd = utils.encryptPassword(req.body.reNewPass)
+                const user = await userModel.findOneAndUpdate({ email: req.body.email },{password:ePassowrd})
+                if(!user){
+                    winston.debug(`user not found ${req.body.email}`)
+                    res.send({
+                        "status": 404,
+                        "message": "User not found"
+                    })
+                } else {
+                  res.status(200).send({
+                      "message":"Password Change successfully. Now you can login with new password"
+                  })
+                }
             }
         }
-    },
-    changePassword: (req,res)=>{
-        console.log('Request ',req);
-        res.send(req.body)
     }
 }

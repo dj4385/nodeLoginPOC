@@ -18,7 +18,6 @@ route.get('/changePassword.html',(req,res)=>{
 })
 route.post('/register',userCtrll.register)
 route.post('/login',userCtrll.login)
-route.post('/forgetPassword', userCtrll.forgetPassword)
 route.post('/changePassword', userCtrll.changePassword)
 
 module.exports = route
