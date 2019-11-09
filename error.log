@@ -18,3 +18,5 @@
 {"message":"Data base is connected","level":"debug","label":"Log"}
 {"level":"debug","message":"server started at port : ","label":"Log"}
 {"message":"Data base is connected","level":"debug","label":"Log"}
+{"level":"debug","message":"server started at port : ","label":"Log"}
+{"name":"MongoNetworkError","errorLabels":["TransientTransactionError"],"level":"debug","label":"Log"}
