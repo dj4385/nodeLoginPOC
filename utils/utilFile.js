@@ -35,7 +35,7 @@ module.exports = {
         //     }
         // })
     },
-    mailPassword: (name,email,password)=>{
+    mailPassword: (name,email,link)=>{
         var transport = mail.createTransport({
             service: 'outlook',
             tls:{
@@ -51,8 +51,8 @@ module.exports = {
             from : 'dheeraj2406@outlook.com',
             to : email,
             subject : 'Password',
-            text : `Hello ${name}, Your password is ${password}`,
-            // html : "<a href="+link+">Helo</a>"
+            text : `Hello ${name},Please link the link below to change the password`,
+            html : "<a href="+link+">Click here to change your password</a>"
         }
 
         var pr = transport.sendMail(mailOption)

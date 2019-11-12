@@ -7,10 +7,8 @@ const express = require('express'),
       mongoose = require('mongoose'),
       cors = require('cors'),
       winston = require('./utils/logger'),
+      ejs = require('ejs')
 
-
-
-      require('./startup/prod')(app)
 
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json({limit: '10mb', extended: true})) // with this you can send the data to api in json format
@@ -25,6 +23,7 @@ app.get('/',(req,res)=>{
 app.use('/api/',route)
 app.use('/api/product/',productRoute)
 
+app.set('view engine','ejs')
 
 mongoose.Promise = global.Promise
 mongoose.connect(config.dbPath,{useCreateIndex: true,

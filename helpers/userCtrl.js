@@ -126,12 +126,13 @@ module.exports = {
                     "message": "Invalid Email Address"
                 })
             } else{
-                var decryptPass = user.password
-                var sendMail = utils.mailPassword(user.name,user.email,decryptPass)
+                var link = `http://localhost:4000/api/servePage?email=${user.email}`;
+                var sendMail = utils.mailPassword(user.name,user.email,link)
                 sendMail.then(mailRes=>{
                     res.send({
-                        "message": "Password is send to your registered mail id",
-                        "info": mailRes
+                        "message": "Please check the link which is sended to your registered mail id",
+                        "info": mailRes,
+                        "status":200
                     })
                 }).catch(err=>{
                     winston.debug(`Error while sending mail ${err}`)
@@ -140,6 +141,26 @@ module.exports = {
                         "info":err
                     })
                 })
+            }
+        }
+    },
+    servePage: async (req,res)=>{
+        console.log("React to page")
+        if(!req.query.email){
+            res.send({
+                "message":"Invalid Link"
+            })
+        } else {
+            var user = await userModel.findOne({email:req.query.email})
+            if(!user){
+                res.send({
+                    "message":"Invalid Email Address"
+                })
+            } else {
+                res.send("Hello")
+                // res.render('index',{
+                //     emailAddress: user.email
+                // })
             }
         }
     }
