@@ -19,6 +19,7 @@
 {"level":"debug","message":"server started at port : ","label":"Log"}
 {"message":"Data base is connected","level":"debug","label":"Log"}
 {"level":"debug","message":"server started at port : ","label":"Log"}
+<<<<<<< HEAD
 {"message":"Data base is connected","level":"debug","label":"Log"}
 {"level":"debug","message":"server started at port : ","label":"Log"}
 {"message":"Data base is connected","level":"debug","label":"Log"}
@@ -60,3 +61,6 @@
 {"message":"Data base is connected","level":"debug","label":"Log"}
 {"level":"debug","message":"server started at port : ","label":"Log"}
 {"message":"Data base is connected","level":"debug","label":"Log"}
+=======
+{"name":"MongoNetworkError","errorLabels":["TransientTransactionError"],"level":"debug","label":"Log"}
+>>>>>>> 942196cbd789409a1e179640bdd411a4a5707d1c

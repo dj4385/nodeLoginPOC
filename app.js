@@ -6,9 +6,13 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       mongoose = require('mongoose'),
       cors = require('cors'),
+<<<<<<< HEAD
       winston = require('./utils/logger'),
       ejs = require('ejs')
 
+=======
+      winston = require('./utils/logger')
+>>>>>>> 942196cbd789409a1e179640bdd411a4a5707d1c
 
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json({limit: '10mb', extended: true})) // with this you can send the data to api in json format
