@@ -145,7 +145,6 @@ module.exports = {
         }
     },
     servePage: async (req,res)=>{
-        console.log("React to page")
         if(!req.query.email){
             res.send({
                 "message":"Invalid Link"
@@ -157,10 +156,9 @@ module.exports = {
                     "message":"Invalid Email Address"
                 })
             } else {
-                res.send("Hello")
-                // res.render('index',{
-                //     emailAddress: user.email
-                // })
+                res.render('index',{
+                    emailAddress: user.email
+                })
             }
         }
     }

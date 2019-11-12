@@ -6,6 +6,6 @@ route.post('/register',userCtrll.register)
 route.post('/login',userCtrll.login)
 route.post('/changePassword', userCtrll.changePassword)
 route.post('/forgetPassword', userCtrll.forgetPassword)
-route.get('/servePage:email',userCtrll.servePage)
+route.get('/servePage',userCtrll.servePage)
 
 module.exports = route
