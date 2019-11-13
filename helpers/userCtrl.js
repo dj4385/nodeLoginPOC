@@ -90,13 +90,13 @@ module.exports = {
                 "message": "Invalid Object"
             })
         } else {
-            if(req.body.newPass !== req.body.reNewPass){
+            if(req.body.newPassword !== req.body.reEnterNewPassword){
                 winston.debug(`Password is not matched, newPassword  ${req.body.newPass}, reNewPass: ${req.body.reNewPass}`)
                 res.send({
                     "message":"Password is not matched"
                 })
             } else {
-                var ePassowrd = utils.encryptPassword(req.body.reNewPass)
+                var ePassowrd = utils.encryptPassword(req.body.reEnterNewPassword)
                 const user = await userModel.findOneAndUpdate({ email: req.body.email },{password:ePassowrd})
                 if(!user){
                     winston.debug(`user not found ${req.body.email}`)
