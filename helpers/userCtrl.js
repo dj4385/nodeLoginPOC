@@ -145,13 +145,15 @@ module.exports = {
         }
     },
     servePage: async (req,res)=>{
-        if(!req.query.email){
+        if(!req.query){
+            winston.debug(`Request query params is empty ${req.query}`)
             res.send({
                 "message":"Invalid Link"
             })
         } else {
             var user = await userModel.findOne({email:req.query.email})
             if(!user){
+                winston.debug(`Invalid Email Address ${req.query.email}`)
                 res.send({
                     "message":"Invalid Email Address"
                 })
