@@ -23,6 +23,10 @@ const productSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    productDescription: {
+        type: string,
+        require: true
+    },
     isAddedToCart: {
         type: Boolean,
         default : false
