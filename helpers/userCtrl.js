@@ -69,7 +69,9 @@ module.exports = {
                     })
                 } else {
                     var token = jwt.sign({
-                        _id: user._id
+                        _id: user._id,
+			email: user.email,
+			name: user.name
                     },'loginAPIPOC')
                     // res.setHeader("token",token)
                     res.send({
