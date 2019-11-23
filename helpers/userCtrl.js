@@ -21,6 +21,12 @@ module.exports = {
             var hashPassword = utils.encryptPassword(req.body.password)
             const user = new userModel({
                 name : req.body.name,
+                contactNumber: req.body.contactNumber,
+                address: req.body.address,
+                state: req.body.state,
+                city: req.body.city,
+                country: req.body.country,
+                pincode: req.body.pincode,
                 email : req.body.email,
                 password : hashPassword
             })
@@ -70,15 +76,29 @@ module.exports = {
                 } else {
                     var token = jwt.sign({
                         _id: user._id,
-			email: user.email,
-			name: user.name
+                        name : user.name,
+                        contactNumber: user.contactNumber,
+                        address: user.address,
+                        state: user.state,
+                        city: user.city,
+                        country: user.country,
+                        pincode: user.pincode,
+                        email : user.email
                     },'loginAPIPOC')
                     // res.setHeader("token",token)
                     res.send({
                         "token":token,
                         "message": "login success",
                         "name" : user.name,
-                        "email" : user.email
+                        "contactNumber": user.contactNumber,
+                        "address": user.address,
+                        "state": user.state,
+                        "city": user.city,
+                        "country": user.country,
+                        "pincode": user.pincode,
+                        "email" : user.email,
+                        "isAdmin":user.isAdmin
+                        
                     })
                 }
             }

@@ -24,7 +24,7 @@ const productSchema = mongoose.Schema({
         require: true
     },
     productDescription: {
-        type: string,
+        type: String,
         require: true
     },
     isAddedToCart: {
