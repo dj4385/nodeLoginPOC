@@ -58,6 +58,7 @@ module.exports = {
                 category: req.body.category,
                 productQty : req.body.productQty,
                 price : req.body.price,
+                productDescription: req.body.productDescription,
                 totalPrice: req.body.totalPrice,
                 productImg: req.body.productImg
             })

@@ -3,8 +3,8 @@ const express = require('express'),
       productCtrl = require('../helpers/productCtrl'),
       checkAuth = require('../middleware/checkUserLogin')
 
-productRouter.get('/products', checkAuth, productCtrl.viewProducts)
-productRouter.get('/product/:id', checkAuth, productCtrl.getSingleProduct)
+productRouter.get('/products', productCtrl.viewProducts)
+productRouter.get('/product/:id', productCtrl.getSingleProduct)
 productRouter.post('/addProduct', checkAuth, productCtrl.addProduct)
 productRouter.put('/products/:id', checkAuth, productCtrl.updateProduct)
 productRouter.delete('/products/:id',checkAuth, productCtrl.deleteProduct)
